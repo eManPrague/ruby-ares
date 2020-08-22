@@ -10,5 +10,5 @@ require 'ruby-ares/state'
 require 'ruby-ares/parser'
 
 module RubyARES
-  VERSION = '0.0.4'
+  VERSION = '0.0.5'
 end

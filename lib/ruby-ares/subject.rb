@@ -12,6 +12,8 @@ module RubyARES
                 :company,   # alias for name
                 :legal_form,# Pravni forma
                 :legal_form_id, # Id pravni formy
+                :founded,   # Datum vzniku
+                :closed,    # Datum zaniku
                 :status,    # Stav
                 :state,      # Stav - podrobneji
                 :case_reference, # Spisova znacka
@@ -23,7 +25,7 @@ module RubyARES
       RubyARES::Parser.get_subject xml
     end
 
-    def initialize(ic, dic, name, status, addresses, updated_at, legal_form, legal_form_id, case_reference, state)
+    def initialize(ic, dic, name, status, addresses, updated_at, legal_form, legal_form_id, founded, closed, case_reference, state)
       @ic, @ico = ic, ic
       @dic = dic
       @name, @company = name
@@ -33,6 +35,8 @@ module RubyARES
       @updated_at = updated_at
       @legal_form = legal_form
       @legal_form_id = legal_form_id
+      @founded = founded
+      @closed = closed
       @case_reference = case_reference
     end
 

@@ -10,7 +10,7 @@ module RubyARES
     def self.fetch_subject_xml(ic)
       # Get a subject info from ARES[http://wwwinfo.mfcr.cz/ares/]
       uri = URI('http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi')
-      params = { :ico => ic, :version => '1.0.3' }
+      params = { :ico => ic, :version => '1.0.3', :aktivni => false }
       uri.query = URI.encode_www_form(params)
 
       begin
