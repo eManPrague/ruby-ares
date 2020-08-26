@@ -26,8 +26,12 @@ module RubyARES
           @legal_form = node.find('D:PF/D:NPF').to_a[0].content unless node.find('D:PF/D:NPF').to_a.size == 0
           @legal_form_id = node.find('D:PF/D:KPF').to_a[0].content unless node.find('D:PF/D:KPF').to_a.size == 0
           @founded = node.find('D:DV').to_a[0].content unless node.find('D:DV').to_a.size == 0
-          @closed = node.find('D:DZ').to_a[0].content unless node.find('D:DZ').to_a.size == 0
-
+          @closed = node.find('D:DZ').to_a[0].content 
+          unless node.find('D:DZ').to_a.size == 0
+            @closed = node.find('D:DZ').to_a[0].content
+          else
+            @closed = nil
+          end
           place = node.find('//D:SZ/D:SD/D:T').to_a[0].content unless node.find('//D:SZ/D:SD/D:T').to_a.size == 0
           record = node.find('//D:SZ/D:OV').to_a[0].content unless node.find('//D:SZ/D:OV').to_a.size == 0
           section, insert = record.split if record
