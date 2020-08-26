@@ -26,7 +26,6 @@ module RubyARES
           @legal_form = node.find('D:PF/D:NPF').to_a[0].content unless node.find('D:PF/D:NPF').to_a.size == 0
           @legal_form_id = node.find('D:PF/D:KPF').to_a[0].content unless node.find('D:PF/D:KPF').to_a.size == 0
           @founded = node.find('D:DV').to_a[0].content unless node.find('D:DV').to_a.size == 0
-          @closed = node.find('D:DZ').to_a[0].content 
           unless node.find('D:DZ').to_a.size == 0
             @closed = node.find('D:DZ').to_a[0].content
           else
