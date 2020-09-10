@@ -19,26 +19,26 @@ module RubyARES
           attrs = node.children()
 
           # Attributes of the subject
-          @status = node.find("D:ROR/D:SOR/D:SSU").to_a[0].content unless node.find('D:ROR/D:SOR/D:SSU').to_a.size == 0
-          @ic = node.find('D:ICO').to_a[0].content unless node.find('D:ICO').to_a.size == 0
-          @dic = node.find('D:DIC').to_a[0].content unless node.find('D:DIC').to_a.size == 0
-          @name = node.find('D:OF').to_a[0].content unless node.find('D:OF').to_a.size == 0
-          @legal_form = node.find('D:PF/D:NPF').to_a[0].content unless node.find('D:PF/D:NPF').to_a.size == 0
-          @legal_form_id = node.find('D:PF/D:KPF').to_a[0].content unless node.find('D:PF/D:KPF').to_a.size == 0
-          @founded = node.find('D:DV').to_a[0].content unless node.find('D:DV').to_a.size == 0
-          unless node.find('D:DZ').to_a.size == 0
+          @status = ( node.find("D:ROR/D:SOR/D:SSU").to_a[0].content unless node.find('D:ROR/D:SOR/D:SSU').to_a.size == 0 ) || nil
+          @ic = ( node.find('D:ICO').to_a[0].content unless node.find('D:ICO').to_a.size == 0 ) || nil 
+          @dic = ( node.find('D:DIC').to_a[0].content unless node.find('D:DIC').to_a.size == 0 ) || nil
+          @name = ( node.find('D:OF').to_a[0].content unless node.find('D:OF').to_a.size == 0 ) || nil
+          @legal_form = ( node.find('D:PF/D:NPF').to_a[0].content unless node.find('D:PF/D:NPF').to_a.size == 0 ) || nil
+          @legal_form_id = ( node.find('D:PF/D:KPF').to_a[0].content unless node.find('D:PF/D:KPF').to_a.size == 0 ) || nil
+          @founded = ( node.find('D:DV').to_a[0].content unless node.find('D:DV').to_a.size == 0 ) || nil
+          unless node.find('D:DZ').to_a.size == 0 
             @closed = node.find('D:DZ').to_a[0].content
           else
             @closed = nil
           end
-          place = node.find('//D:SZ/D:SD/D:T').to_a[0].content unless node.find('//D:SZ/D:SD/D:T').to_a.size == 0
-          record = node.find('//D:SZ/D:OV').to_a[0].content unless node.find('//D:SZ/D:OV').to_a.size == 0
+          place = ( node.find('//D:SZ/D:SD/D:T').to_a[0].content unless node.find('//D:SZ/D:SD/D:T').to_a.size == 0 ) || nil
+          record = ( node.find('//D:SZ/D:OV').to_a[0].content unless node.find('//D:SZ/D:OV').to_a.size == 0 ) || nil
           section, insert = record.split if record
-          state = node.find('//D:SOR/D:SSU').to_a[0].content unless node.find('//D:SOR/D:SSU').to_a.size == 0
-          bankruptcy = node.find('//D:SOR/D:KKZ/D:K').to_a[0].content unless node.find('//D:SOR/D:KKZ/D:K').to_a.size == 0
-          compensation = node.find('//D:SOR/D:VY/D:K').to_a[0].content unless node.find('//D:SOR/D:VY/D:K').to_a.size == 0
-          refusal = node.find('//D:SOR/D:ZAM/D:K').to_a[0].content unless node.find('//D:SOR/D:ZAM/D:K').to_a.size == 0
-          liquidation = node.find('//D:SOR/D:LI/D:K').to_a[0].content unless node.find('//D:SOR/D:LI/D:K').to_a.size == 0
+          state = ( node.find('//D:SOR/D:SSU').to_a[0].content unless node.find('//D:SOR/D:SSU').to_a.size == 0 ) || nil
+          bankruptcy = ( node.find('//D:SOR/D:KKZ/D:K').to_a[0].content unless node.find('//D:SOR/D:KKZ/D:K').to_a.size == 0 ) || nil
+          compensation = ( node.find('//D:SOR/D:VY/D:K').to_a[0].content unless node.find('//D:SOR/D:VY/D:K').to_a.size == 0 ) || nil
+          refusal = ( node.find('//D:SOR/D:ZAM/D:K').to_a[0].content unless node.find('//D:SOR/D:ZAM/D:K').to_a.size == 0 ) || nil
+          liquidation = ( node.find('//D:SOR/D:LI/D:K').to_a[0].content unless node.find('//D:SOR/D:LI/D:K').to_a.size == 0 ) || nil
 
           @case_reference = RubyARES::CaseReference.new(place, section, insert)
           @state = RubyARES::State.new(state, bankruptcy, compensation, refusal, liquidation)
